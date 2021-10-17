@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardev">
+
+	<select id="evList1" parameterType="map" resultType="boardev">
+	 	select * from ( select rownum rnum ,a.* 
+		from (select * from board_event where boardid_ev = #{boardid_ev} 
+		and library like '%'||#{keyword}||'%' order by eventnum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="evCount1"  parameterType="map" resultType="int">
+		select count(*) from board_event 
+		where library like '%'||#{keyword} ||'%' and boardid_ev=#{boardid_ev}
+	</select>
+	
+	<select id="evList2" parameterType="map" resultType="boardev">
+	    select * from ( select rownum rnum ,a.* 
+		from (select * from board_event where boardid_ev = #{boardid_ev} 
+		and target like '%'||#{keyword}||'%' order by eventnum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="evCount2"  parameterType="map" resultType="int">
+		select count(*) from board_event 
+		where target like '%'||#{keyword} ||'%' and boardid_ev=#{boardid_ev}
+	</select>
+	
+	<select id="evList3" parameterType="map" resultType="boardev">
+	  	select * from ( select rownum rnum ,a.* 
+		from (select * from board_event where boardid_ev = #{boardid_ev} 
+		and library like '%'||#{keyword1}||'%' and target like '%'||#{keyword2}||'%' order by eventnum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="evCount3"  parameterType="map" resultType="int">
+		select count(*) from board_event  
+		where library like '%'||#{keyword1} ||'%' and target like '%'||#{keyword2} ||'%' and boardid_ev=#{boardid_ev}
+	</select>
+	
+	<select id="eventseqNextval" resultType="int">
+		select eventseq.nextval from dual
+	</select>
+	
+	<insert id="boardevInsert" parameterType="boardev">
+		insert into board_event
+	 	values (#{eventnum}, #{memberid}, #{boardid_ev}, #{content_ev},#{subject_ev},
+	 	#{library},#{pass},#{startdate},#{lastdate},#{total},#{target},#{state},#{register})
+	</insert>
+	
+	<select id="selectBoardev" parameterType="map" resultType="boardev">
+	   select * from board_event where eventnum=#{eventnum} and boardid_ev=#{boardid_ev}
+	</select>
+	
+	<select id="chkList" parameterType="int" resultType="eventrsv">
+	   select * from eventrsv where eventnum=#{eventnum} order by rsvnum_ev
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="boardev">
+	   select * from board_event where eventnum=#{eventnum} 
+	</select>
+	
+	<update id="update" parameterType="boardev">
+		update board_event set subject_ev=#{subject_ev},content_ev=#{content_ev},
+		memberid=#{memberid},library=#{library},total=#{total},target=#{target},
+		startdate=#{startdate},lastdate=#{lastdate},state=#{state} where eventnum=#{eventnum}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from board_event where eventnum=#{eventnum}
+	</delete>
+	
+	<select id="preEvreserve" parameterType="map" resultType="int">
+		select count(*) from eventrsv where eventnum = #{eventnum} and memberid=#{memberid}
+	</select>
+	
+	<select id="eventrsvseqNextval" resultType="int">
+		select eventrsvseq.nextval from dual
+	</select>
+		
+	<insert id="insertEvreserve" parameterType="eventrsv">
+		insert into eventrsv
+	 	values (#{rsvnum_ev}, #{eventnum}, #{memberid}, #{boardid_ev},#{subject_ev},
+	 	#{library},#{startdate},#{lastdate})
+	</insert>
+		
+	<update id="rsvstateUpdate" parameterType="int">
+		update board_event set register=register+1 where eventnum=#{eventnum}
+	</update>
+	
+	<update id="fullUpdate" parameterType="map">
+		update board_event set state=#{keyword} where eventnum=#{eventnum}
+	</update>
+	
+	<select id="evRsvlist" parameterType="String" resultType="eventrsv">
+	    select * from eventrsv where memberid=#{memberid}
+	</select>
+	
+	<delete id="evReserveDelete" parameterType="map">
+		delete from eventrsv where eventnum=#{eventnum} and memberid=#{memberid}
+	</delete>
+	
+	<update id="rsvstateUpdate2" parameterType="int">
+		update board_event set register=register-1 where eventnum=#{eventnum}
+	</update>
+
+</mapper>

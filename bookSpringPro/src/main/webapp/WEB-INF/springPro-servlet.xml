@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<mvc:annotation-driven />
+	<context:component-scan base-package="controller, service"/>
+	<mvc:default-servlet-handler />
+	
+	<mvc:view-controller path="/index"  		view-name="index" />
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1"/>
+		<property name="prefix" value="/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<bean id="beanNameViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>
+	
+	<bean name="idChkForm" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/idChkForm.jsp"/>
+	</bean>
+	<bean name="rentalForm" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/rentalForm.jsp"/>
+	</bean>
+	<bean name="rentalChk" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/bookRentalChk.jsp"/>
+	</bean>
+	<bean name="seatInput" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/seatInput.jsp"/>
+	</bean>
+	<bean name="seatUpdate" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/seatUpdate.jsp"/>
+	</bean>
+	<bean name="seatDelete" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="../singleview/seatDelete.jsp"/>
+	</bean>
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+
+</beans>

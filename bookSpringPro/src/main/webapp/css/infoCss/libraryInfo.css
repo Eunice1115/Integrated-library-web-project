@@ -1,0 +1,100 @@
+*{ margin:0 auto;  padding:0; }
+
+#box{
+	width:100%;
+	height:200vh;
+}
+
+#section{
+	float:left;
+	width:75%;
+	height:200vh;
+	background:white;
+}
+
+#section h3{
+	margin-top:25vh;
+	margin-right:5vw;
+    font-size:2vw;
+	text-align:center;
+}
+
+#section .line{
+	width:15vw;
+	margin-left:27vw;
+}
+
+#box #titlehForm{
+	width:40vw;
+	height:5vh;
+	background:lavender;
+	margin-top:10vh;
+	margin-right:32vw;
+	padding-top:1vh;
+	border-radius:10px;
+	text-align:center;
+	font-size:1.2vw;
+}
+
+#box #titlehForm2{
+	width:40vw;
+	height:5vh;
+	background:lavender;
+	margin-top:5vh;
+	margin-right:32vw;
+	padding-top:1vh;
+	border-radius:10px;
+	text-align:center;
+	font-size:1.2vw;
+}
+
+#section h4{
+	margin-top:10vh;
+	margin-right:5vw;
+	font-size:1.5vw;
+	text-align:center;
+}
+
+#section h5{
+	margin-top:3vh;
+	margin-left:3vw;
+	font-size:1vw;
+	text-align:left;
+}
+
+#section .table{
+	width:70vw;
+	margin-top:1vh;
+	border-collapse: collapse;
+}
+
+#section .table .tr1{
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+}
+
+#section .table .tr1 th{
+	height:4vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+	background:lavender;
+}
+
+#section .table .tr1 td{
+	height:4vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+}
+
+
+#daumRoughmapContainer1632212059224{
+	margin-left:2vw;
+	z-index:0;
+}
+

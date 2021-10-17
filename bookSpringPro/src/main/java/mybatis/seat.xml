@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seat">
+
+	<insert id="seatInsert" parameterType="seat">
+		insert into seat values 
+		(#{seatNum}, #{memberid}, #{pass}, #{library}, sysdate, sysdate + 2/24)
+	</insert>
+	
+	<update id="seatUpdate" parameterType="seat">
+		update seat set checkOut = checkOut + 2/24
+		where memberid =#{memberid} and pass = #{pass}
+	</update>
+	
+	<delete id="seatDelete" parameterType="seat">
+		delete from seat where memberid= #{memberid} and pass= #{pass}
+	</delete>
+	
+	<select id="selectOne" resultType="seat" parameterType="string">
+		select  * from seat where memberid= #{memberid}
+	</select>
+	
+</mapper>

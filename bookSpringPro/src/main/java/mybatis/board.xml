@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	
+	<select id="boardCount1" parameterType="map" resultType="int">
+		select count(*) count from board where library like '%'||#{keyword} ||'%' and boardid=#{boardid}
+	</select>
+	
+	<select id="list1" parameterType="map" resultType="board">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from board where boardid = #{boardid} and library like '%'||#{keyword}||'%' order by ref desc , refstep) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="boardCount2" parameterType="map" resultType="int">
+		select count(*) count from board where subject like '%'||#{keyword} ||'%' and boardid=#{boardid}
+	</select>
+	
+	<select id="list2" parameterType="map" resultType="board">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from board where boardid = #{boardid} and subject like '%'||#{keyword}||'%' order by ref desc , refstep) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="boardCount3" parameterType="map" resultType="int">
+		select count(*) count from board where library like '%'||#{keyword1} ||'%' and 
+		subject like '%'||#{keyword2} ||'%' and boardid=#{boardid}
+	</select>
+	
+	<select id="list3" parameterType="map" resultType="board">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from board where boardid = #{boardid} and library like '%'||#{keyword1}||'%'
+		and subject like '%'||#{keyword2}||'%' order by ref desc , refstep) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="seqNextval" resultType="int">
+		select boardseq.nextval from dual
+	</select>
+
+	<insert id="insertBoard" parameterType="board">
+		insert into board values
+		(#{num},#{boardid},#{memberid}, #{subject}, #{content}, #{file1},
+		sysdate ,0 ,#{ref},#{reflevel} ,#{refstep},#{pass},#{library})
+	</insert>
+
+	<select id="selectOne" parameterType="int" resultType="board">
+		select * from board where num =#{num}
+	</select>
+
+	<update id="readcntadd" parameterType="int">
+		update board set readcnt = readcnt + 1 where num =#{num}
+	</update>
+
+	<update id="refstepadd" parameterType="map">
+		update board set refstep = refstep + 1
+		where ref = #{ref} and refstep > #{refstep}
+	</update>
+
+	<update id="update" parameterType="board">
+		update board set subject=#{subject},content=#{content},file1=#{file1} where num=#{num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from board where num=#{num}
+	</delete>
+</mapper>

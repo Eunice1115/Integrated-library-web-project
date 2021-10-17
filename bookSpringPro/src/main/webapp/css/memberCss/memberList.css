@@ -1,0 +1,90 @@
+*{ margin:0 auto;  padding:0; }
+
+#box{
+	width:100%;
+	height:150vh;
+}
+
+#section{
+	float:left;
+	width:100%;
+	height:150vh;
+	background:white;
+}
+
+#section h3{
+	margin-top:25vh;
+	margin-left:6vw;
+	font-size:2vw;
+	text-align:center;
+}
+
+#box #searchForm{
+	width:30vw;
+	height:7vh;
+	background:lavender;
+	margin-top:5vh;
+	margin-right:59vw;
+	padding-top:1vh;
+	border-radius:10px;
+	text-align:center;
+	font-size:1.2vw;
+}
+
+#section .table{
+	width:80vw;
+	margin-top:3vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+}
+
+#section .table .tr1{
+	height:6vh;
+	border-collapse: collapse;
+	background:lavender;
+	text-align:center;
+	font-size:1.2vw;
+}
+
+#section .table th{
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+}
+
+#section .table td{
+	height:4vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+	font-size:1vw;
+}
+
+input[type=text]{
+	margin:1.5vh;
+	height:3vh;
+	font-size:1.2vw;
+}
+
+input[type=submit]{
+	width:3vw;
+	height:4vh;
+	border-color:#8C8CFF;
+	background:lavender;
+	font-size:1vw;
+	
+}
+
+input[type=button]{
+	margin-top:4vh;
+	margin-left:83.5vw;
+	width:6vw;
+	height:4vh;
+	font-size:1vw;
+	text-align:center;
+	border-color:#8C8CFF;
+	background:lavender;
+	
+}

@@ -1,0 +1,172 @@
+*{ margin:0 auto;  padding:0; }
+
+#box{
+	width:100%;
+	height:300vh;
+}
+
+#section{
+	float:left;
+	width:75%;
+	height:300vh;
+	background:white;
+}
+
+#section h3{
+	margin-top:25vh;
+	font-size:2vw;
+	text-align:center;
+}
+
+#section .table{
+	width:60vw;
+	margin-top:3vh;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+}
+
+#section .table .tr1 th{
+	height:5vh;
+	text-align:center;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1.2vw;
+	background:lavender;
+}
+
+#section .table .tr1 td{
+	text-align:center;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1.2vw;
+	
+}
+
+#section .table .tr2 th{
+	height:5vh;
+	text-align:center;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1vw;
+	background:lavender;
+}
+
+#section .table .tr2 td{
+	text-align:center;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1vw;
+}
+
+#section .table .tr3{
+	height:6vh;
+	text-align:center;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1vw;
+	background:lavender;
+}
+
+#section .table .tr4{
+	height:50vh;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	font-size:1.5vw;
+	
+}
+
+#section .table .tr4 textarea{
+	width:100%;
+	height:60vh;
+	font-size:1.5vw;
+}
+
+#section .table .tr5{
+	height:6vh;
+	border-collapse: collapse;
+	border:solid 0.5px;
+	border-color:#8C8CFF;
+	text-align:center;
+	font-size:1.2vw;	
+}
+
+input[type=text],input[type=password]{
+	width:75%;
+	height:2.5vh;
+}
+
+.select{
+	width:70%;
+	height:4vh;
+	font-size:1vw;
+}
+
+#pic{
+	width:40vw;
+	height:100vh;
+}
+
+input[type=submit]{
+	width:5vw;
+	height:5vh;
+	margin-top:2vh;
+	font-size:1.2vw;
+	border:solid 0.5px;
+	border-color: #8C8CFF;
+	background:lavender;
+}
+
+input[type=button]{
+	width:5vw;
+	height:5vh;
+	margin-top:2vh;
+	margin-left:34.45vw;
+	font-size:1.2vw;
+	border:solid 0.5px;
+	border-color: #8C8CFF;
+	background:lavender;
+}
+
+.table2{
+	width:60vw;
+	margin-top:3vh;
+	margin-right:7vw;
+	border-collapse: collapse;
+}
+
+.table2 .tr3{
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+}
+
+.table2 .tr3 th{
+	height:4vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+	background:lavender;
+}
+
+.table2 .tr3 td{
+	height:4vh;
+	border:solid 0.5px;
+	border-collapse: collapse;
+	border-color:#8C8CFF;
+	text-align:center;
+}
+
+#section h2{
+	text-align:center;
+}
+
+

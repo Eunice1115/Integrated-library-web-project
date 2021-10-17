@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="book">
+
+	<insert id="bookInsert"  parameterType="book">
+		insert into book 
+	 	values (#{booknum}, #{bookname}, #{author}, #{publisher},#{publicdate},#{stockdate},
+	 	#{library},#{bookstate},0,#{bookpicture})
+	</insert>
+	
+	<select id="bookList1" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where library like '%'||#{keyword}||'%' order by booknum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="bookCount1"  parameterType="string" resultType="int">
+		select count(*) from book where library like '%'||#{keyword} ||'%'
+	</select>
+	
+	<select id="bookList2" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where bookname like '%'||#{keyword}||'%' order by booknum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="bookCount2"  parameterType="string" resultType="int">
+		select count(*) from book where bookname like '%'||#{keyword} ||'%'
+	</select>
+	
+	<select id="bookList3" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where author like '%'||#{keyword}||'%' order by booknum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="bookCount3"  parameterType="string" resultType="int">
+		select count(*) from book where author like '%'||#{keyword} ||'%'
+	</select>
+	
+	<select id="bookList4" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where library like '%'||#{keyword1}||'%'
+		and bookname like '%'||#{keyword2}||'%' order by booknum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="bookCount4"  parameterType="map" resultType="int">
+		select count(*) from book where library like '%'||#{keyword1} ||'%' and bookname like '%'||#{keyword2}||'%'
+	</select>
+	
+	<select id="bookList5" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where library like '%'||#{keyword1}||'%'
+		and author like '%'||#{keyword2}||'%' order by booknum) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="bookCount5"  parameterType="map" resultType="int">
+		select count(*) from book where library like '%'||#{keyword1} ||'%' and author like '%'||#{keyword2}||'%'
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="book">
+		select * from book where booknum =#{booknum}
+	</select>
+	
+	<select id="reserveCount" parameterType="int" resultType="int">
+		select count(*) from reservation where booknum = #{booknum} 
+	</select>
+	
+	<update id="bookUpdate" parameterType="book">
+		update book set  bookname=#{bookname},author=#{author},
+		publisher=#{publisher}, publicdate=#{publicdate},stockdate=#{stockdate},
+		library=#{library},bookstate=#{bookstate},bookpicture=#{bookpicture}
+		where booknum=#{booknum}
+	</update>
+	
+	<delete id="bookDelete" parameterType="int">
+		delete from book where booknum=#{booknum}
+	</delete>
+	
+	<select id="newbookList" parameterType="map" resultType="book">
+		select * from ( select rownum rnum ,a.* 
+		from (select * from book where stockdate like '%'||#{keyword}||'%' order by stockdate) a )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="newbookcount"  parameterType="string" resultType="int">
+		select count(*) from book where stockdate like #{keyword}||'%'
+	</select>
+	
+	<select id="prebookReserve" parameterType="map" resultType="int">
+		select count(*) from reservation where booknum = #{booknum} and memberid=#{memberid}
+	</select>
+	
+	<select id="prebookRental" parameterType="int" resultType="int">
+		select count(*) from rental where booknum = #{booknum} 
+	</select>
+	
+	<select id="rseqNextval" resultType="int">
+		select rsvseq.nextval from dual
+	</select>
+	
+	<insert id="bookReserveInsert" parameterType="bookreserve">
+		insert into reservation values
+		(#{rsvnum}, #{memberid}, #{booknum}, sysdate, #{bookname}, #{library},#{author})
+	</insert>
+	
+	<select id="bookreserveList" parameterType="string" resultType="bookreserve">
+		select *from reservation where memberid = #{memberid}
+	</select>
+	
+	<delete id="bookReserveDelete" parameterType="map">
+		delete from reservation where booknum= #{booknum} and memberid=#{memberid}
+	</delete>
+	
+	<select id="rentalSelect" parameterType="int" resultType="rental">
+		select * from rental where booknum=#{booknum}
+	</select>
+	
+	<select id="rentalNextval" resultType="int">
+		select rentalseq.nextval from dual
+	</select>
+	
+	<insert id="bookRentalInsert" parameterType="rental">
+		insert into rental values
+		(#{rentalnum}, #{memberid}, #{booknum}, sysdate, sysdate+14)
+	</insert>
+	
+	<select id="rentalselectOne" parameterType="int" resultType="rental">
+		select * from rental where rentalnum=#{rentalnum}
+	</select>
+	
+	<update id="bookStateUpdate" parameterType="map">
+		update book set bookstate=#{keyword} ,borrowcount=borrowcount+1 where booknum=#{booknum}
+	</update>
+	
+	<select id="bookrentalList" parameterType="string" resultType="join">
+	    select r.rentalnum, r.memberid, r.booknum ,
+	    b.bookname, b.author, b.library, r.rentaldate,r.returndate_sch from book b, rental r 
+	    where b.booknum = r.booknum and memberid=#{memberid}
+	</select>
+	
+	<delete id="bookReturn" parameterType="map">
+		delete from rental where  memberid=#{memberid} and booknum=#{booknum}
+	</delete>
+	
+	<update id="bookReturnUpdate" parameterType="map">
+		 update book set bookstate=#{keyword} where booknum=#{booknum}
+	</update>
+	
+	<select id="bestBookList" resultType="bestbook">
+		select rank()over(order by sum(borrowcount) desc) rank,
+		bookname,author,sum(borrowcount) borrowcount from book group by bookname,author 
+	</select>
+	
+	<update id="returnRenew" parameterType="map">
+		 update rental set returndate_sch=returndate_sch+7 where memberid=#{memberid} and booknum=${booknum}
+	</update>
+	
+	<select id="period"  parameterType="map" resultType="int">
+		select (returndate_sch - rentaldate) from rental where memberid=#{memberid} and booknum=${booknum}
+	</select>
+
+</mapper>
